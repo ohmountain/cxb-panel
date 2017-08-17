@@ -10,7 +10,7 @@ import Index from './components/index';
 
 import ListPeople from './components/people/compoments/list';
 import SearcgPeople from './components/people/compoments/search';
-import SynchronizePeople  from './components/people/compoments/synchronize';
+import CreatePeople  from './components/people/compoments/create';
 
 import ListMeta from './components/meta/components/list';
 import SearchMeta from './components/meta/components/search';
@@ -34,7 +34,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            paths: []
+            paths: [],
+            collapsed: false
         };
     }
 
@@ -72,7 +73,10 @@ class App extends Component {
                             </Menu>
                         </Header>
                         <Layout>
-                            <Sider width={200}>
+                            <Sider
+                                width={200}
+                                collapsible
+                                collapsed={this.state.collapsed}>
                                 <Menu
                                     mode="inline"
                                     theme="default"
@@ -83,7 +87,7 @@ class App extends Component {
                                     <SubMenu key="sub1" title={<span><Icon type="team" />人口信息</span>}>
                                         <Menu.Item key="1"><Link to="/people/list"  onClick={ () => this.setState({ paths: ['人口信息', '人口列表'] })  } >人口列表</Link></Menu.Item>
                                         <Menu.Item key="2"><Link to="/people/search"  onClick={ () => this.setState({ paths: ['人口信息', '查找'] })  } >查找</Link></Menu.Item>
-                                        <Menu.Item key="3"><Link to="/people/synchronize"  onClick={ () => this.setState({ paths: ['人口信息', '同步'] })  } >同步</Link></Menu.Item>
+                                        <Menu.Item key="3"><Link to="/people/create"  onClick={ () => this.setState({ paths: ['人口信息', '创建'] })  } >创建</Link></Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub2" title={<span><Icon type="laptop" />元信息</span>}>
                                         <Menu.Item key="4"><Link to="/meta/list"  onClick={ () => this.setState({ paths: ['元信息', '元信息列表'] })  } >元信息列表</Link></Menu.Item>
@@ -111,7 +115,7 @@ class App extends Component {
 
                                     <Route path="/people/list" component={ ListPeople } />
                                     <Route path="/people/search" component={ SearcgPeople } />
-                                    <Route path="/people/synchronize" component={ SynchronizePeople } />
+                                    <Route path="/people/create" component={ CreatePeople } />
 
                                     <Route path="/meta/list" component={ ListMeta } />
                                     <Route path="/meta/search" component={ SearchMeta } />
