@@ -18,8 +18,26 @@ const getPeople = (page, count) => {
     return fetch(request);
 }
 
+const createPerson = (name, sex, idNumber, address) => {
+
+    const form = new FormData();
+    form.append('name', name);
+    form.append('sex', sex);
+    form.append('id_number', idNumber);
+    form.append('address', address);
+
+    const request = new Request(fetch_url.create_person, {
+        method: 'POST',
+        body: form,
+        // credentials: 'include'
+    });
+
+    return fetch(request);
+}
+
 export default {
     getPersonById,
     getPersonByIdNumber,
-    getPeople
+    getPeople,
+    createPerson
 }

@@ -16,7 +16,6 @@ export default class List extends Component {
             pageSize: 20,
         }
 
-
         this.columns = [{
             title: '姓名',
             dataIndex: 'name',
@@ -39,7 +38,7 @@ export default class List extends Component {
             title: '操作',
             dataIndex: 'operation',
             render: (text, record, index) => {
-                return <Popconfirm title="删除" onConfirm={ () => {
+                return <Popconfirm title={`删除${record.name} ?`} onConfirm={ () => {
                     this.setState({ loading: true });
                     setTimeout(() => {
                         const data = this.state.dataSource;
